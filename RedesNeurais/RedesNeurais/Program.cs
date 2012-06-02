@@ -33,10 +33,33 @@ namespace RedesNeurais
                 1, 1, 1, 1 };
             double[] saidasdois = new double[] {
                 0,1,0,0};
+
+            RNA rede = new RNA(new SigmoideBinaria(), 1, 20, 4, 3, 1000, 0.01);
+            rede.ConfiguraCamada(0, 20);
+            rede.ConfiguraCamada(1, 10);
+            rede.ConfiguraCamada(2, 4);
+
+            double[,] conjTreinamento = new double[,]{ 
+                { // Um
+                0, 0, 1, 0, 
+                0, 0, 1, 0, 
+                0, 0, 1, 0, 
+                0, 0, 1 ,0,
+                0, 1, 1, 0}, 
+                { // Dois
+                1, 1, 1, 1, 
+                0, 0, 0, 1, 
+                1, 1, 1, 1,  
+                1, 0, 0 ,0,
+                1, 1, 1, 1 } 
+            };
             
-            Camada camada = new Camada(4, 20, 0.5, 1000, new FuncaoDegrau());
-            camada.Treinar(um, saidasum);
-            camada.Treinar(dois, saidasdois);
+            double[,] saidasEsperadas = new double[,]{ 
+                {1,0,0,0},
+                {0,1,0,0}
+            };
+
+            rede.Treinar(2,conjTreinamento, saidasEsperadas);
            
             Console.ReadLine();
             

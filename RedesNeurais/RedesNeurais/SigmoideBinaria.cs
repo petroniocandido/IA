@@ -9,7 +9,7 @@ namespace RedesNeurais
     {
         public double Ativacao(double a)
         {
-            return 1.0/(Math.Exp(-0.005*a));
+            return 1.0/(1.0 + Math.Exp(-0.005*a));
         }
 
         public double Derivada(double a)
