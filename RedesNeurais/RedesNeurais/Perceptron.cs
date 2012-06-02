@@ -47,6 +47,7 @@ namespace RedesNeurais
             Random rnd = new Random(DateTime.Now.Millisecond);
             for(int tmp = 0; tmp <= numx; tmp++)
                 w[tmp] = rnd.NextDouble();
+            
             n = txaprendizado;
             ativacao = a;
             max = maxit;            
@@ -89,15 +90,9 @@ namespace RedesNeurais
                 erro = d - y;
                 Console.WriteLine("Saida Desejada: " + d + "Saida da Rede:" + y);
                 if (erro != 0)
-                {
-                    
+                {                    
                     Console.WriteLine("erro: " + erro);
-                    for (int c = 0; c < x.Length; c++)
-                    {
-                        w[c] = w[c] + n * x[c] * erro;
-                    }
-                    w[x.Length] = w[x.Length] + n * 1 * erro;
-                    
+                    CorrigePesos(x, erro);                    
                 }
             }
 

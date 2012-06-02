@@ -71,8 +71,10 @@ namespace RedesNeurais
                     }
 
                     double erro = 1;
-                    while (erro > nivelErro)
+                    int contIteracoes = 0;
+                    while (erro > nivelErro) // && contIteracoes < maxEpocas*5)
                     {
+                        contIteracoes++;
                         /*
                          * FASE FORWARD
                          */
@@ -90,16 +92,18 @@ namespace RedesNeurais
 
                         // Calcula o erro global
                         erro = 0;
+                        String outStr = "";
                         for (int saida = 0; saida < numSaidas; saida++)
                         {
                             double e = saidas[saida] - x[saida];
+                            outStr += " " + x[saida];
                             erro = erro + Math.Abs(e);
                             //erroGlobal = erroGlobal + ((e * e)/2);
                         }
+                        erroGlobal = erroGlobal + (erro * erro) / 2;
+                        erroGlobal = erroGlobal / 2;
 
-                        erroGlobal = erroGlobal + ((erro * erro)/ 2);
-
-                        Console.WriteLine("Epoca:" + contEpocas + "\t\tPadrao:" + padrao + "\t\tErro:" + erroGlobal);
+                        Console.WriteLine("Epoca:" + contEpocas + "\tIteração:" + contIteracoes + "\tPadrao:" + padrao + "\t\tErro:" + erro + " " + outStr);
 
                         //Atualiza pesos da última camada
 
