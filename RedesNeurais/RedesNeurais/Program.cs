@@ -34,9 +34,9 @@ namespace RedesNeurais
             double[] saidasdois = new double[] {
                 0,1,0,0};
 
-            RNA rede = new RNA(new SigmoideBinaria(), 1, 20, 4, 3, 1000, 0.01);
-            rede.ConfiguraCamada(0, 10);
-            rede.ConfiguraCamada(1, 8);
+            RNA rede = new RNA(new SigmoideBinaria(), 1, 20, 4, 3, 1000, 0.0);
+            rede.ConfiguraCamada(0, 4);
+            rede.ConfiguraCamada(1, 4);
             rede.ConfiguraCamada(2, 4);
 
             double[,] conjTreinamento = new double[,]{ 

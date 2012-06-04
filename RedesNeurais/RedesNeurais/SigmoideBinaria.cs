@@ -14,7 +14,7 @@ namespace RedesNeurais
 
         public double Derivada(double a)
         {
-            return 0.005 * Ativacao (a)* (1.0 - Ativacao(a));
+            return -0.005* Ativacao(a) * (1.0 - Ativacao(a));
         }
     }
 }

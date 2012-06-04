@@ -127,8 +127,8 @@ namespace RedesNeurais
                                 for (int neuronioAnt = 0; neuronioAnt < camadaAnterior.NumeroNeuronios; neuronioAnt++)
                                 {
                                     err = err
-                                        + camadaAnterior.Neuronios[neuronioAnt].Erro
-                                        * camadaAnterior.Neuronios[neuronioAnt].Pesos[neuronio];
+                                        + (camadaAnterior.Neuronios[neuronioAnt].Erro
+                                        * camadaAnterior.Neuronios[neuronioAnt].Pesos[neuronio]);
                                 }
 
                                 err = ativacao.Derivada(camada.Neuronios[neuronio].Net) * err;
