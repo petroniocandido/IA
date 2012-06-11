@@ -7,6 +7,8 @@ using HeuristicaConstrutiva;
 using HeuristicaMelhoria;
 using ProblemaMochila;
 
+using ProblemaQuadroHorarios;
+
 namespace Heuristicas
 {
     class Program
@@ -87,6 +89,17 @@ namespace Heuristicas
             System.Console.WriteLine("Utilidade da Mochila: " + heuristica.Solucao.Avaliacao);
 
             System.Console.ReadLine();
+
+            ConstroiQuadroHorario cqh = new ConstroiQuadroHorario();
+
+            Horario seg12 = new Horario();
+            cqh.Horarios.Add(seg12);
+            Professor p1 = new Professor();
+            cqh.Professores.Add(p1);
+
+            cqh.AddRestricao(p1, seg12);
+
+            cqh.GerarSolucao();
         }
     }
 }
