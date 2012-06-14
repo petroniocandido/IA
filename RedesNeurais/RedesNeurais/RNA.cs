@@ -107,7 +107,10 @@ namespace RedesNeurais
 
                         //Atualiza pesos da última camada
 
-                        camadas[numCamadas - 1].CorrigePesos(camadas[numCamadas - 2].Saida, saidas);
+                        if(numCamadas > 1)
+                            camadas[numCamadas - 1].CorrigePesos(camadas[numCamadas - 2].Saida, saidas);
+                        else
+                            camadas[numCamadas - 1].CorrigePesos(entrada, saidas);
 
                         // Atualiza pesos das camadas intermediárias
 
