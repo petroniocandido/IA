@@ -16,24 +16,33 @@ namespace AlgoritmosGeneticos
         public List<IIndividuo> Populacao { get; set; }
         public IIndividuo Solucao { get; set; }
 
-        protected void Selecao()
+        public AlgoritmoGenetico()
         {
-            foreach (IIndividuo individuo in Populacao)
-            {
-                individuo.CalculaFitness();
-                if (Solucao.Fitness < individuo.Fitness)
-                    Solucao = individuo;
-            }
+            Populacao = new List<IIndividuo>();
+        }
+        
+        public void Selecao()
+        {
             int qtdDescarte = (int)((float)TamanhoPopulacao * TaxaSelecao);
             int count = 0;
 
             Populacao = Populacao
-                .OrderBy(x => x.Fitness)
+                .OrderByDescending(x => x.Fitness)
                 .Take(TamanhoPopulacao - qtdDescarte)
                 .ToList();
         }
 
-        protected void Cruzamento()
+        private void AtualizaFitness()
+        {
+            foreach (IIndividuo individuo in Populacao)
+            {
+                individuo.Fitness = CalculaFitness(individuo);
+                if (Solucao.Fitness < individuo.Fitness)
+                    Solucao = individuo;
+            }
+        }
+
+        public void Cruzamento()
         {
             int qtdCruzamento = (int)((float)TamanhoPopulacao * TaxaCruzamento);
             int qtdReposicao = (int)((float)TamanhoPopulacao * TaxaSelecao);
@@ -47,10 +56,10 @@ namespace AlgoritmosGeneticos
                     Populacao.Add(RealizarCruzamento(elite[filho], elite[0]));
         }
 
-        protected abstract IIndividuo RealizarCruzamento(IIndividuo a, IIndividuo b);
+        public abstract IIndividuo RealizarCruzamento(IIndividuo a, IIndividuo b);
 
 
-        protected void Mutacao()
+        public void Mutacao()
         {
             Random rnd = new Random();
             int qtdMutacao = (int)((float)TamanhoPopulacao * TaxaMutacao);
@@ -68,20 +77,24 @@ namespace AlgoritmosGeneticos
             }
         }
 
-        protected abstract void RealizarMutacao(IIndividuo a);
+        public abstract void RealizarMutacao(IIndividuo a);
 
-        protected abstract void GerarPopulacaoInicial();
-        protected abstract bool CriterioParada();
+        public abstract void GerarPopulacaoInicial();
+        public abstract bool CriterioParada();
+        public abstract float CalculaFitness(IIndividuo ind);
 
         public void Executar()
         {
             GerarPopulacaoInicial();
+            AtualizaFitness();
             while (!CriterioParada())
             {
                 Selecao();
                 Cruzamento();
                 Mutacao();
-            }
+                AtualizaFitness();
+                Geracoes++;
+            } 
         }
 
     }

@@ -10,6 +10,6 @@ namespace AlgoritmosGeneticos
         object[] Cromossomos { get; set; }
         int TamanhoCromossomo { get; set; }
         float Fitness { get; set; }
-        void CalculaFitness();
+        
     }
 }
