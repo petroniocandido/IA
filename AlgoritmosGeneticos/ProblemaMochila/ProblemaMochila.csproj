@@ -2,20 +2,18 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2899AD0F-76D6-4B55-9C32-D63009F650EF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{7271F484-B20E-4F18-A953-57D40B156F30}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TesteAG</RootNamespace>
-    <AssemblyName>TesteAG</AssemblyName>
+    <RootNamespace>ProblemaMochila</RootNamespace>
+    <AssemblyName>ProblemaMochila</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,8 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,21 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="GeraMochila.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Mochila.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlgoritmosGeneticos\AlgoritmosGeneticos.csproj">
       <Project>{21BEE6F0-F9BF-4D73-84BA-5997BFD878C3}</Project>
       <Name>AlgoritmosGeneticos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProblemaMochila\ProblemaMochila.csproj">
-      <Project>{7271F484-B20E-4F18-A953-57D40B156F30}</Project>
-      <Name>ProblemaMochila</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QuadroHorarios\QuadroHorarios.csproj">
-      <Project>{42DB7D93-C948-4AFB-A702-9B43F35C3E33}</Project>
-      <Name>QuadroHorarios</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

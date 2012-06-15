@@ -14,7 +14,7 @@ namespace QuadroHorarios
         public Dictionary<String, int> HorariosRev { get; set; }
         public List<String> Restricoes { get; set; }
 
-        public int TamanhoIndividuo { get; set; }
+        
 
         public GeraQuadroHorarios()
         {

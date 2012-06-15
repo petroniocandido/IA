@@ -9,6 +9,7 @@ namespace AlgoritmosGeneticos
     {
         public int Geracoes { get; set; }
         public int TamanhoPopulacao { get; set; }
+        public int TamanhoIndividuo { get; set; }
         public float TaxaCruzamento { get; set; }
         public float TaxaSelecao { get; set; }
         public float TaxaMutacao { get; set; }
@@ -46,14 +47,23 @@ namespace AlgoritmosGeneticos
         {
             int qtdCruzamento = (int)((float)TamanhoPopulacao * TaxaCruzamento);
             int qtdReposicao = (int)((float)TamanhoPopulacao * TaxaSelecao);
-
+            int modulo = qtdReposicao % 2;
             List<IIndividuo> elite = Populacao.Take(qtdCruzamento).ToList();
 
-            for(int filho = 0; filho < qtdReposicao; filho++)
-                if(filho + 1 < qtdCruzamento)
-                    Populacao.Add(RealizarCruzamento(elite[filho], elite[filho+1]));
+            for (int filho = 0; filho < qtdReposicao; filho += 2)
+            {
+                if (filho + 1 < qtdCruzamento)
+                {
+                    Populacao.Add(RealizarCruzamento(elite[filho], elite[filho + 1]));
+                    Populacao.Add(RealizarCruzamento(elite[filho + 1], elite[filho]));
+                }
                 else
+                {
                     Populacao.Add(RealizarCruzamento(elite[filho], elite[0]));
+                    Populacao.Add(RealizarCruzamento(elite[0], elite[filho]));
+                }
+            }
+            if (modulo > 0) Populacao.RemoveAt(Populacao.Count - 1);
         }
 
         public abstract IIndividuo RealizarCruzamento(IIndividuo a, IIndividuo b);

@@ -5,6 +5,7 @@ using System.Text;
 
 using AlgoritmosGeneticos;
 using QuadroHorarios;
+using ProblemaMochila;
 
 namespace TesteAG
 {
@@ -12,6 +13,7 @@ namespace TesteAG
     {
         static void Main(string[] args)
         {
+            /*
             GeraQuadroHorarios qh = new GeraQuadroHorarios()
             {
                 TamanhoPopulacao = 10,
@@ -57,11 +59,7 @@ namespace TesteAG
             qh.AddRestricao("P5", "QUI12");
             qh.AddRestricao("P5", "QUA12");
 
-            /*qh.GerarPopulacaoInicial();
-
-            foreach (IIndividuo i in qh.Populacao)
-                i.Fitness = qh.CalculaFitness(i);
-             */
+            
             qh.Executar();
 
             String h1 = "|";
@@ -78,6 +76,92 @@ namespace TesteAG
             Console.Write(h1 + "\n" + v1 + "\n" + h2 + "\n" + v2 + "\n");
             Console.Write("Gerações: " + qh.Geracoes);
 
+            Console.ReadLine();
+            */
+
+            GeraMochila gm = new GeraMochila(45)
+            {
+                TamanhoPopulacao = 10,
+                TaxaCruzamento = 0.5f,
+                TaxaMutacao = 0.3f,
+                TaxaSelecao = 0.5f
+            };
+
+            gm.AddItem(new Item() { Descricao = "Lanterna", Peso = 3, Utilidade = 15 });
+            gm.AddItem(new Item() { Descricao = "Canivete Suíço", Peso = 1, Utilidade = 10 });
+            gm.AddItem(new Item() { Descricao = "Jaca", Peso = 30, Utilidade = 3 });
+            gm.AddItem(new Item() { Descricao = "Panela", Peso = 5, Utilidade = 15 });
+            gm.AddItem(new Item() { Descricao = "Carne", Peso = 10, Utilidade = 20 });
+            gm.AddItem(new Item() { Descricao = "Arroz", Peso = 7, Utilidade = 20 });
+            gm.AddItem(new Item() { Descricao = "Feijão", Peso = 8, Utilidade = 20 });
+            gm.AddItem(new Item() { Descricao = "Cerveja", Peso = 15, Utilidade = 8 });
+            gm.AddItem(new Item() { Descricao = "Mapa", Peso = 1, Utilidade = 15 });
+            gm.AddItem(new Item() { Descricao = "Celular", Peso = 3, Utilidade = 9 });
+            gm.AddItem(new Item() { Descricao = "Barraca", Peso = 8, Utilidade = 60 });
+            gm.AddItem(new Item() { Descricao = "Cobertor", Peso = 8, Utilidade = 25 });
+            gm.AddItem(new Item() { Descricao = "Jornal", Peso = 3, Utilidade = 5 });
+            gm.AddItem(new Item() { Descricao = "Papel Higiênico", Peso = 2, Utilidade = 14 });
+            gm.AddItem(new Item() { Descricao = "Carvão", Peso = 8, Utilidade = 15 });
+            gm.AddItem(new Item() { Descricao = "Repelente", Peso = 2, Utilidade = 5 });
+            gm.AddItem(new Item() { Descricao = "Vara de Pescar", Peso = 3, Utilidade = 2 });
+            gm.AddItem(new Item() { Descricao = "Pente", Peso = 1, Utilidade = 1 });
+            gm.AddItem(new Item() { Descricao = "Espelho", Peso = 1, Utilidade = 1 });
+            gm.AddItem(new Item() { Descricao = "Sabão", Peso = 2, Utilidade = 7 });
+            gm.AddItem(new Item() { Descricao = "Xampu", Peso = 4, Utilidade = 5 });
+            gm.AddItem(new Item() { Descricao = "Luvas", Peso = 1, Utilidade = 2 });
+            gm.AddItem(new Item() { Descricao = "Violão", Peso = 15, Utilidade = 4 });
+            gm.AddItem(new Item() { Descricao = "Fósforo", Peso = 1, Utilidade = 7 });
+            gm.AddItem(new Item() { Descricao = "Isqueiro", Peso = 1, Utilidade = 9 });
+            gm.AddItem(new Item() { Descricao = "Bússola", Peso = 2, Utilidade = 14 });
+            gm.AddItem(new Item() { Descricao = "Roupa", Peso = 5, Utilidade = 28 });
+            gm.AddItem(new Item() { Descricao = "Sapatos", Peso = 3, Utilidade = 11 });
+            gm.AddItem(new Item() { Descricao = "Protetor Solar", Peso = 2, Utilidade = 6 });
+            gm.AddItem(new Item() { Descricao = "Pratos", Peso = 5, Utilidade = 12 });
+            gm.AddItem(new Item() { Descricao = "Colheres", Peso = 1, Utilidade = 8 });
+            gm.AddItem(new Item() { Descricao = "Facas", Peso = 1, Utilidade = 13 });
+            gm.AddItem(new Item() { Descricao = "Binóculos", Peso = 5, Utilidade = 3 });
+            gm.AddItem(new Item() { Descricao = "GPS", Peso = 5, Utilidade = 20 });
+            gm.AddItem(new Item() { Descricao = "Notebook", Peso = 15, Utilidade = 5 });
+            gm.AddItem(new Item() { Descricao = "Som", Peso = 16, Utilidade = 8 });
+            gm.AddItem(new Item() { Descricao = "Livro", Peso = 3, Utilidade = 3 });
+            gm.AddItem(new Item() { Descricao = "Corda", Peso = 5, Utilidade = 15 });
+            gm.AddItem(new Item() { Descricao = "Lixa Unha", Peso = 1, Utilidade = 1 });
+            gm.AddItem(new Item() { Descricao = "Esmalte", Peso = 1, Utilidade = 1 });
+            gm.AddItem(new Item() { Descricao = "Alicate", Peso = 2, Utilidade = 8 });
+            gm.AddItem(new Item() { Descricao = "Machado", Peso = 15, Utilidade = 50 });
+            gm.AddItem(new Item() { Descricao = "Linha", Peso = 1, Utilidade = 1 });
+            gm.AddItem(new Item() { Descricao = "Agulha", Peso = 1, Utilidade = 1 });
+            gm.AddItem(new Item() { Descricao = "Band Aid", Peso = 1, Utilidade = 12 });
+            gm.AddItem(new Item() { Descricao = "Mertiolate", Peso = 1, Utilidade = 11 });
+            gm.AddItem(new Item() { Descricao = "Gaze", Peso = 1, Utilidade = 13 });
+            gm.AddItem(new Item() { Descricao = "Perfume", Peso = 1, Utilidade = 1 });
+            gm.AddItem(new Item() { Descricao = "Leite", Peso = 4, Utilidade = 10 });
+            gm.AddItem(new Item() { Descricao = "Biscoitos", Peso = 4, Utilidade = 10 });
+            gm.AddItem(new Item() { Descricao = "Sucrilhos", Peso = 3, Utilidade = 7 });
+            gm.AddItem(new Item() { Descricao = "Bombons", Peso = 3, Utilidade = 5 });
+            gm.AddItem(new Item() { Descricao = "Meias", Peso = 1, Utilidade = 2 });
+            gm.AddItem(new Item() { Descricao = "Chapeu", Peso = 3, Utilidade = 7 });
+            gm.AddItem(new Item() { Descricao = "Estilingue", Peso = 1, Utilidade = 4 });
+            gm.AddItem(new Item() { Descricao = "Martelo", Peso = 6, Utilidade = 12 });
+            gm.AddItem(new Item() { Descricao = "Arame", Peso = 6, Utilidade = 15 });
+
+            gm.Executar();
+
+            int index = 0;
+            foreach (object o in gm.Solucao.Cromossomos)
+            {
+                int it = (int)o;
+                if (it == 1)
+                {
+                    Console.WriteLine("Item: " + gm.Itens[index].Descricao +
+                        "\tPeso: " + gm.Itens[index].Peso + "\tUtil: " + gm.Itens[index].Utilidade);
+                }
+                index++;
+            }
+            Mochila m = (Mochila)gm.Solucao;
+            Console.WriteLine("Utilidade: " + m.Utilidade);
+            Console.WriteLine("Peso: " + m.Peso);
+            Console.WriteLine("Gerações: " + gm.Geracoes);
             Console.ReadLine();
         }
     }
